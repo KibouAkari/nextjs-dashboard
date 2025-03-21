@@ -5,12 +5,14 @@ import { CreateInvoice } from "@/app/ui/invoices/buttons";
 import { lusitana } from "@/app/ui/fonts";
 import { Suspense } from "react";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
-import { useSearchParams } from "next/navigation";
 
-export default function Page() {
-  const searchParams = useSearchParams();
-  const query = searchParams?.get("query") || ""; // Hier holen wir den 'query'-Parameter aus der URL
-  const currentPage = Number(searchParams?.get("page")) || 1; // 'page' aus der URL holen
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { query?: string; page?: string };
+}) {
+  const query = searchParams?.query || "";
+  const currentPage = Number(searchParams?.page) || 1;
 
   return (
     <div className="w-full">
